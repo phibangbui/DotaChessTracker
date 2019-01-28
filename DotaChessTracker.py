@@ -112,6 +112,9 @@ def isClass(chessPiece, findClass):
         return False
 
 def start_point():
+
+    print ("\n ====== START SCREEN ====== \n")
+
     start_point_selection = raw_input("[1] : Add a Unit \n" +
                            "[2] : Remove a Unit \n" +
                            "[3] : Check Units \n")
@@ -119,6 +122,9 @@ def start_point():
     start_point_choice[start_point_selection]()
 
 def addPiece():
+
+    print ("\n ====== PIECE ADDITION SCREEN ====== \n")
+
     categorySelection = raw_input("[1] : Species \n" +
                             "[2] : Classes \n" +
                             "[3] : Go Back \n")
@@ -126,6 +132,9 @@ def addPiece():
     categorySelectionChoice[categorySelection]()
 
 def removePiece():
+
+    print ("\n ====== PIECE REMOVAL SCREEN ====== \n")
+
     if not my_pieces:
         print("You don't have any pieces\n")
         start_point()
@@ -142,6 +151,9 @@ def removePiece():
     
 
 def chooseSpecies():
+
+    print ("\n ====== SPECIES SELECTION SCREEN ====== \n")
+
     selection_string = ""
     for index in range(len(species_list)):
             selection_string += ("[" + str(index) + "] : " + species_list[index] + "\n")
@@ -153,12 +165,18 @@ def chooseSpecies():
     chess_piece_selection_string = ""
     for speciesIndex in range(len(mySpeciesList)):
             chess_piece_selection_string += ("[" + str(speciesIndex) + "] : " + mySpeciesList[speciesIndex].name + '\n')
+
+    print ("\n ====== PIECE SELECTION SCREEN ====== \n")
+
     chessPieceSelection = raw_input(chess_piece_selection_string)
 
     my_pieces.append(mySpeciesList[int(chessPieceSelection)])
     start_point()
 
 def chooseClasses():
+
+    print ("\n ====== CLASS SELECTION SCREEN ====== \n")
+
     selection_string = ""
     for index in range(len(class_list)):
             selection_string += ("[" + str(index) + "] : " + class_list[index] + "\n")
@@ -170,12 +188,18 @@ def chooseClasses():
     chess_piece_selection_string = ""
     for pieceIndex in range(len(myClassList)):
             chess_piece_selection_string += ("[" + str(pieceIndex) + "] : " + myClassList[pieceIndex].name + '\n')
+
+    print ("\n ====== PIECE SELECTION SCREEN ====== \n")
+
     chessPieceSelection = raw_input(chess_piece_selection_string)
 
     my_pieces.append(myClassList[int(chessPieceSelection)])
     start_point()
 
 def checkPieces():
+
+    print ("\n ====== PIECE CHECK SCREEN ====== \n")
+
     dedupedList = []
     dedupedClassList = []
     dedupedSpeciesList = []
@@ -192,16 +216,19 @@ def checkPieces():
             pieceSpeciesList = list(filter(lambda x: isSpecies(x, dedupedPiece.pieceSpecies), dedupedList))
             dedupedSpeciesList.append((dedupedPiece.pieceSpecies, pieceSpeciesList))
 
+    print ("======= CLASSES HERE =======")
     for classList in dedupedClassList:
         print (classList[0] + " : " + str(len(classList[1])))
 
+    print ("======= SPECIES HERE =======")
     for speciesList in dedupedSpeciesList:
         print (speciesList[0] + " : " + str(len(speciesList[1])))
 
+    print ("======= ALL PIECES HERE =======")
     for my_piece in my_pieces:
         print ("Name: " + my_piece.name)
-
     start_point()
+
 
 initializeChessPieces()
 start_point()
